@@ -1,138 +1,86 @@
-//EDITAR USUARIO
-//EDITAR USUARIO
-//EDITAR USUARIO
-/*=============================================
-EDITAR USUARIO
-=============================================*/
-$(document).on("click", ".btnEditarUsuario", function () {
+
+
+
+
+
+
+function valideKey(evt){
+    
+  // code is the decimal ASCII representation of the pressed key.
+  var code = (evt.which) ? evt.which : evt.keyCode;
   
-
-  var id = $(this).attr("idUsuario");
-
-  var datos = new FormData();
-  datos.append("idUsuario", id);
-
-  $.ajax({
-
-    url: "ajax/usuarios.ajax.php",
-    method: "POST",
-    data: datos,
-    cache: false,
-    contentType: false,
-    processData: false,
-    dataType: "json",
-    success: function (respuesta) {
-      $("#editarNombre").val(respuesta["nombre"]);
-      $("#editarUsuario").val(respuesta["usuario"]);
-      $("#editarPerfil").html(respuesta["perfil"]);
-      $("#editarPerfil").val(respuesta["perfil"]);
-      $("#passwordActual").val(respuesta["password"]);
-      $("#id_bodegaEditar").val(respuesta["id_bodega"]);
-    }
-
-  });
-
-})
-
-
-//acivar usuario
-
-
-$(document).on("click", ".btnActivar", function(){
-
-  var idUsuario = $(this).attr("idUsuario");
-  var estadoUsuario = $(this).attr("estadoUsuario");
-  
-
-  var datos = new FormData();
-  datos.append("activarId", idUsuario);
-  datos.append("activarUsuario", estadoUsuario);
-  $.ajax({
-
-    url: "ajax/usuarios.ajax.php",
-    method: "POST",
-    data: datos,
-    contentType: false,
-    cache: false,
-    processData: false,
-    success: function (respuesta) {
-
-      if (window.matchMedia("(max-width:767px)").matches) {
-        swal({
-          type: "success",
-          title: "Actualización Correcta",
-          showConfirmButton: true,
-          confirmButtonText: "Cerrar",
-          closenConfirm: false
-
-
-        }).then((result) => {
-
-          if (result.value) {
-            window.location = "usuarios";
-          }
-
-        })
-
-
-
-      }
-
-
-
-    }
-  });
-
-
-  if (estadoUsuario == 0) {
-    $(this).removeClass('btn-success')
-    $(this).addClass('btn-danger')
-    $(this).html("Desactivado")
-    $(this).attr("estadoUsuario", 1)
-
-  } else {
-    $(this).removeClass('btn-danger')
-    $(this).addClass('btn-success')
-    $(this).html("Activado")
-    $(this).attr("estadoUsuario", 0)
-
+  if(code==8) { // backspace.
+    return true;
+  } else if(code>=48 && code<=57) { // is a number.
+    return true;
+  } else{ // other keys.
+    return false;
   }
+}
 
 
 
-})
 
-
-//revisar usario repetido
-
-$("#nuevoUsuario").change(function () {
-  $(".alert").remove();
-
-  var usuario = $(this).val();
-  var datos = new FormData();
-  datos.append("validarUsuario", usuario);
-  $.ajax({
-
-    url: "ajax/usuarios.ajax.php",
-    method: "POST",
-    data: datos,
-    contentType: false,
-    cache: false,
-    processData: false,
-    dataType: "json",
-    success: function (respuesta) {
-
-      if (respuesta) {
-      
-        $("#nuevoUsuario").parent().after('<div class="alert alert-warning">Usuario existente  </div>');
-        $("#nuevoUsuario").val("");
+function filterFloat(evt,input){
+  // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
+  var key = window.Event ? evt.which : evt.keyCode;    
+  var chark = String.fromCharCode(key);
+  var tempValue = input.value+chark;
+  if(key >= 48 && key <= 57){
+      if(filter(tempValue)=== false){
+          return false;
+      }else{       
+          return true;
       }
+  }else{
+        if(key == 8 || key == 13 || key == 46 || key == 0) {            
+            return true;              
+        }else{
+            return false;
+        }
+  }
+}
 
-    }
-  });
 
 
 
+function filterFloat1(evt,input){
+  // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
+  var key = window.Event ? evt.which : evt.keyCode;    
+  var chark = String.fromCharCode(key);
+  var tempValue = input.value+chark;
+  if(key >= 48 && key <= 57){
+      if(filter1(tempValue)=== false){
+          return false;
+      }else{       
+          return true;
+      }
+  }else{
+        if(key == 8 || key == 13 || key == 46 || key == 0) {            
+            return true;              
+        }else{
+            return false;
+        }
+  }
+}
 
 
-})
+function filter(__val__){
+  var preg = /^([0-9]+\.?[0-9]{0,2})$/; 
+  if(preg.test(__val__) === true){
+      return true;
+  }else{
+     return false;
+  }
+  
+}
+
+function filter1(__val__){
+  var preg = /^([0-9]+\.?[0-9]{0,2})$/; 
+  if(preg.test(__val__) === true){
+      return true;
+  }else{
+     return false;
+  }
+  
+}

@@ -120,7 +120,7 @@ MODAL AGREGAR CLIENTE
               <label for="">Cédula</label>
               <div class="input-group">
                 <span class="input-group-addon"></span>
-                <input type="number" min="0" class="form-control input-lg " name="cedula" placeholder="Ingresar cedula" required>
+                <input onkeypress="return valideKey(event);" type="text"  maxlength="10"  class="form-control input-lg " name="cedula" placeholder="INGRESE CÉDULA" required>
               </div>
             </div>
 
@@ -132,7 +132,7 @@ MODAL AGREGAR CLIENTE
               <label for="">Nombres completos</label>
               <div class="input-group">
                 <span class="input-group-addon"></span>
-                <input type="text" class="form-control input-lg" name="nombres" placeholder="Ingresar nombre completos" required>
+                <input type="text" style="text-transform:uppercase" class="form-control input-lg" name="nombres" placeholder="Ingresar nombre completos" required>
               </div>
             </div>
 
@@ -146,7 +146,7 @@ MODAL AGREGAR CLIENTE
               <label for="">Fecha nacimiento</label>
               <div class="input-group">
                 <span class="input-group-addon"></span>
-                <input type="date" class="form-control input-lg fecha_nacimiemto"  id="fecha_nacimiemto" name="fecha_nacimiemto" placeholder="Fecha nacimiento">
+                <input type="date" class="form-control input-lg fecha_nacimiemto"  id="fecha_nacimiemto" name="fecha_nacimiemto" placeholder="Fecha nacimiento" required>
               </div>
             </div>
 
@@ -159,7 +159,7 @@ MODAL AGREGAR CLIENTE
               <label for="">Edad</label>
               <div class="input-group">
                 <span class="input-group-addon"></span>
-                <input  type="number" class="form-control input-lg edad" id="edad" name="edad" placeholder="Edad" readonly>
+                <input  type="number" class="form-control input-lg edad" id="edad" name="edad" placeholder="EDAD" readonly required>
               </div>
             </div>
 
@@ -172,7 +172,9 @@ MODAL AGREGAR CLIENTE
               <label for="">Temperatura</label>
               <div class="input-group">
                 <span class="input-group-addon"></span>
-                <input type="text" step="0.00" class="form-control input-lg" name="temperatura" placeholder="Temperatura"
+                <input type="text"  class="form-control input-lg" name="temperatura" placeholder="Exp. 26.30"
+
+                onkeypress="return filterFloat(event,this);" required
                 >
               </div>
             </div>
@@ -185,7 +187,7 @@ MODAL AGREGAR CLIENTE
               <label for="">Presión arterial</label>
               <div class="input-group">
                 <span class="input-group-addon"></span>
-                <input type="text" class="form-control input-lg" name="precion_arterial" placeholder="Preción arterial">
+                <input type="text" class="form-control input-lg"  maxlength="7"  onkeypress="return valideKeyForemat(event,this);" id="presion" name="precion_arterial" placeholder="124/541" required>
               </div>
             </div>
 
@@ -197,7 +199,7 @@ MODAL AGREGAR CLIENTE
               <label for="">Pulso</label>
               <div class="input-group">
                 <span class="input-group-addon"></span>
-                <input type="number" class="form-control input-lg" name="pulso" placeholder="Pulso">
+                <input type="text" class="form-control input-lg"  name="pulso" placeholder="Exp. 150" onkeypress="return valideKey(event);" required>
               </div>
             </div>
 
@@ -210,7 +212,7 @@ MODAL AGREGAR CLIENTE
               <label for="">frecuencia respiratoria</label>
               <div class="input-group">
                 <span class="input-group-addon"></span>
-                <input type="number" class="form-control input-lg" name="frecuencia_respiratoria" placeholder="frecuencia respiratoria">
+                <input type="text" onkeypress="return valideKey(event);" class="form-control input-lg" name="frecuencia_respiratoria" placeholder="Exp. 100" required>
               </div>
             </div>
 
@@ -222,7 +224,7 @@ MODAL AGREGAR CLIENTE
               <label for="">Saturación</label>
               <div class="input-group">
                 <span class="input-group-addon"></span>
-                <input type="number" class="form-control input-lg" id="" name="saturacion" placeholder="Saturación">
+                <input type="number" class="form-control input-lg" id="" name="saturacion" placeholder="Exp. 10" onkeypress="return valideKey(event);" required>
               </div>
             </div>
 
@@ -235,7 +237,9 @@ MODAL AGREGAR CLIENTE
               <label for="">Peso KG</label>
               <div class="input-group">
                 <span class="input-group-addon"></span>
-                <input step="0.00" type="text" id="peso" class="form-control input-lg" name="peso" placeholder="Peso" >
+                <input  type="text" id="peso" class="form-control input-lg" name="peso" placeholder="Exp. 12.255"
+                maxlength="5"
+                onkeypress="return filterFloat(event,this);" required>
               </div>
             </div>
 
@@ -247,7 +251,10 @@ MODAL AGREGAR CLIENTE
               <label for="">Talla CM</label>
               <div class="input-group">
                 <span class="input-group-addon"></span>
-                <input type="text" maxlength="10" step="0.00"class="form-control input-lg"  id="talla" name="talla" placeholder="talla" >
+                <input type="text" class="form-control input-lg"  id="talla" name="talla" 
+                maxlength="6" placeholder="Exp. 175.25"
+                onkeypress="return filterFloat(event,this);"
+                required>
               </div>
             </div>
 
@@ -260,7 +267,7 @@ MODAL AGREGAR CLIENTE
               <label for="">IMC</label>
               <div class="input-group">
                 <span class="input-group-addon"></span>
-                <input  type="number" step="0.00" class="form-control input-lg" id="imc" name="imc" placeholder="IMC" readonly>
+                <input  type="number" step="0.00" class="form-control input-lg" id="imc" name="imc" placeholder="IMC" readonly required>
               </div>
             </div>
 

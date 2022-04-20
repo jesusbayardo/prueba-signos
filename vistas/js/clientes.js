@@ -80,8 +80,7 @@ $("#peso").change(function () {
   var peso = $(this).val();
  
  var talla = $("#talla").val();
-  console.log("peso"+peso)
-  console.log("talla"+talla)
+  
 
   var altura=talla/100;
   var imc=(peso/(altura*altura));
@@ -96,14 +95,13 @@ $("#peso").change(function () {
 
 $("#talla").change(function () {
  
-  var peso = $(this).val();
+  var talla = $(this).val();
  
- var talla = $("#talla").val();
-  console.log("peso"+peso)
-  console.log("talla"+talla)
+ var peso = $("#peso").val();
+ 
 
       var altura=talla/100;
-var imc=(peso/(altura*altura));
+      var imc=(peso/(altura*altura));
 
 let  formateo=imc.toFixed(3);
   console.log(formateo)
@@ -113,3 +111,30 @@ let  formateo=imc.toFixed(3);
 })
 
 
+
+function valideKeyForemat(evt){
+    
+
+
+
+
+  var code = (evt.which) ? evt.which : evt.keyCode;
+  
+  if(code==8) { // backspace.
+    return true;
+  } else if(code>=47 && code<=57) { 
+    var presion=$("#presion").val();
+ console.log(presion.length)
+if(presion.length==3){
+  $("#presion").val(presion+"/")
+
+}
+    
+    // is a number.
+    return true;
+  } else{ // other keys.
+    return false;
+  }
+
+ 
+}
