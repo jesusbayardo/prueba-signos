@@ -1,0 +1,9 @@
+Options All -Indexes
+
+RewriteEngine On
+
+RewriteRule ^([-a-zA-Z0-9]+)$ index.php?ruta=$1
+RewriteCond %{HTTP_HOST} ^sistema.tiendamilitar\.com.ec$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.sistema.tiendamilitar\.com.ec$
+RewriteCond %{HTTPS} !on
+RewriteRule ^(.*)$ https://sistema.tiendamilitar.com.ec/$1 [R=301,L,NE]
